@@ -1,0 +1,20 @@
+<suite name="fb">
+    <tests>
+        <test name="loginTest" >
+
+            <parameter name="browser" value="chrome"/>
+            <parameter name="username" value="4u.sadasiva@gmail.com"></parameter>
+            <parameter name="password" value="4u.sadasiva"></parameter>
+                <groups>
+                    <run>
+                        <!--include name="All"/-->
+                        <inlude name="second"/>
+                    </run>
+                </groups>
+                <classes>
+                    <class name="jaya.FbLogin"/>
+                    <!--class name="jaya.signUpFb"></class-->
+                </classes>
+        </test>
+    </tests>
+</suite>

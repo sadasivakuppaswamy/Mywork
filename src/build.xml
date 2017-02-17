@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<project name="Hello World Project" default="compile">
+
+    <property name="sitename" value="www.tutorialspoint.com"/>
+    <property name="src.root" value="${basedir}"/>
+    <property name="lib.root" value="${basedir}/lib"/>
+    <property name="dist" value="${basedir}/dist"/>
+    <property name="build" value="${basedir}/bin"/>
+
+
+    <path id="qa.lib">
+    <pathelement path="${build}"/>
+    <pathelement path="${lib.root}"/>
+
+    <fileset dir="${lib.root}">
+        <include name="*.jar"/>
+        <exclude name="ant.jar"/>
+        <exclude name="**/*.zip"/>
+    </fileset>
+    </path>
+
+
+
+    <target name="info">
+        <echo>Apache Ant version is ${ant.version} - You are at ${sitename} </echo>
+    </target>
+
+    <!-- Deletes the existing build, docs and dist directory-->
+    <target name="clean">
+        <delete dir="${build}" />
+
+    </target>
+    <!-- Creates the  build, docs and dist directory-->
+    <target name="makedir">
+        <mkdir dir="${build}" />
+
+    </target>
+
+    <!-- Compiles the java code (including the usage of library for JUnit -->
+    <target name="compile" depends="clean, makedir">
+        <javac includeantruntime="false" classpathref="qa.lib" debug="on"
+
+               source="1.7" target="1.7" srcdir="${src.root}" destdir="${build}">
+            <!--includesfile name="${src.root}/Search.java"></includesfile-->
+        </javac>
+
+
+    </target>
+    <target name="run" depends="clean, makedir,compile">
+
+        <java fork="true" failonerror="yes" classname="${build}/Search">
+        </java>
+
+
+    </target>
+
+
+</project>
